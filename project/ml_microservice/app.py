@@ -2,13 +2,13 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
 import os
+import uvicorn  # <- pour lancer le serveur
 
 app = FastAPI(title="MLOps Microservice")
 
 class Item(BaseModel):
     text: str
 
-# Lazy model load (placeholder: replace with your trained pipeline)
 MODEL_PATH = os.getenv("MODEL_PATH", "artifacts/model.joblib")
 _model = None
 
@@ -27,6 +27,9 @@ def predict(item: Item):
     model = get_model()
     if model is None:
         return {"error": "Model not found. Train and place at artifacts/model.joblib"}
-    # For text models, ensure the joblib pipeline includes vectorizer/tokenizer
     pred = model.predict([item.text])[0]
     return {"prediction": str(pred)}
+
+# === Lancer FastAPI correctement dans Docker ===
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=5000)

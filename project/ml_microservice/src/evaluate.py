@@ -8,6 +8,8 @@ from sklearn.metrics import roc_curve, auc, precision_recall_curve, confusion_ma
 import pandas as pd
 from src.utils import load_config, load_data, split_data, save_fig
 
+mlflow.set_experiment("ChurnClassifier")
+
 def parse_args():
     import argparse
     p = argparse.ArgumentParser()
