@@ -13,7 +13,7 @@ def build_pipeline(numeric, categorical, model_type="logreg"):
     ])
     cat = Pipeline(steps=[
         ("imputer", SimpleImputer(strategy="most_frequent")),
-        ("ohe", OneHotEncoder(handle_unknown="ignore", sparse=False))
+        ("ohe", OneHotEncoder(handle_unknown="ignore", sparse_output=False))
     ])
     pre = ColumnTransformer(
         transformers=[("num", num, numeric), ("cat", cat, categorical)],

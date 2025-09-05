@@ -1,6 +1,6 @@
 data:
   csv_path: data/raw.csv
-  target: churn
+  target: Churn
   test_size: 0.2
   random_state: 42
 
