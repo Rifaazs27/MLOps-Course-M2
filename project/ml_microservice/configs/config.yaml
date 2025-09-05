@@ -1,0 +1,25 @@
+data:
+  csv_path: data/raw.csv
+  target: churn
+  test_size: 0.2
+  random_state: 42
+
+features:
+  numeric: ["tenure", "MonthlyCharges", "TotalCharges"]
+  categorical: ["gender", "SeniorCitizen", "Partner", "Dependents",
+                "PhoneService", "InternetService", "Contract",
+                "PaperlessBilling", "PaymentMethod"]
+
+model:
+  type: "logreg"  # "logreg" or "random_forest"
+  params:
+    C: [0.1, 1.0, 10.0]
+    penalty: ["l2"]
+    solver: ["lbfgs","liblinear"]
+  # optional: registered model name (to try registry)
+  registered_name: "ChurnClassifier"
+
+cv:
+  strategy: "StratifiedKFold"
+  n_splits: 5
+  scoring: "roc_auc"
