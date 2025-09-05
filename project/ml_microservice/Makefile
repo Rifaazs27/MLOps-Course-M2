@@ -21,6 +21,8 @@ test:
 	PYTHONPATH=. pytest -q
 
 mlflow-ui:
-	mlflow ui --port 5000
+	mlflow ui --port 5005
 
 all: clean-data train evaluate mlflow-ui
+
+
