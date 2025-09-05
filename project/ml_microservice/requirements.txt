@@ -8,3 +8,7 @@ mlflow
 pytest
 flake8
 ruff
+matplotlib
+pyyaml
+joblib
+ruamel.yaml 
